@@ -5,25 +5,28 @@ using System.Collections.Generic;
 public class Grid : MonoBehaviour
 {
 
-    public bool displayGridGizmos;
-    public LayerMask unwalkableMask;
-    public Vector2 gridWorldSize;
-    public float nodeRadius;
-    public TerrainType[] walkableRegions;
-    public int obstacleProximityPenalty = 10;
-    Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int>();
-    LayerMask walkableMask;
+    public bool displayGridBoundaries; // displays the grid and the waypoints
+    public bool displayGridGizmos; // displays the grid and the waypoints
+    public LayerMask unwalkableMask; // layer of obstacles
+    public Vector2 gridWorldSize; // size od the grid
+    public float nodeRadius; // radius of each walkable point on the grid
+    public TerrainType[] walkableRegions; // regions and their priorities
+    public int obstacleProximityPenalty = 10; // the closer to an obstacle the less desirable that path would be
+    Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int>(); // holds the regions and their penalties
+    LayerMask walkableMask; // the layers of the walkable regions
 
-    Node[,] grid;
+    Node[,] grid; // a grid of each point on the grid
 
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
+    // min and max penalties to make a gradient penalty grid map
     int penaltyMin = int.MaxValue;
     int penaltyMax = int.MinValue;
 
     void Awake()
     {
+        // node diameter and how many rows and columns of waypoints
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
@@ -48,18 +51,19 @@ public class Grid : MonoBehaviour
     void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
+        // bottom left point on the grid, the starting point
         Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
+                // world point position from bottom left corner
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
 
+                // calculatinf movement penalty for each walkable point
                 int movementPenalty = 0;
-
-
                 Ray ray = new Ray(worldPoint + Vector3.up * 50, Vector3.down);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100, walkableMask))
@@ -77,15 +81,18 @@ public class Grid : MonoBehaviour
             }
         }
 
+        // gradient of move penalty
         BlurPenaltyMap(3);
-
     }
 
+    // gradient of move penalty
     void BlurPenaltyMap(int blurSize)
     {
+        // the size of the bluring and its extents
         int kernelSize = blurSize * 2 + 1;
         int kernelExtents = (kernelSize - 1) / 2;
 
+        // to optimize we do horizontal and vertical calculations
         int[,] penaltiesHorizontalPass = new int[gridSizeX, gridSizeY];
         int[,] penaltiesVerticalPass = new int[gridSizeX, gridSizeY];
 
@@ -139,6 +146,7 @@ public class Grid : MonoBehaviour
 
     }
 
+    // gets all the neighbouring nodes
     public List<Node> GetNeighbours(Node node)
     {
         List<Node> neighbours = new List<Node>();
@@ -163,7 +171,7 @@ public class Grid : MonoBehaviour
         return neighbours;
     }
 
-
+    // closest node to a world point
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
@@ -176,9 +184,10 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
 
+    // Gizmos
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+        if(displayGridBoundaries) Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
         if (grid != null && displayGridGizmos)
         {
             foreach (Node n in grid)
@@ -191,6 +200,7 @@ public class Grid : MonoBehaviour
         }
     }
 
+    // Layer and its move penalty
     [System.Serializable]
     public class TerrainType
     {

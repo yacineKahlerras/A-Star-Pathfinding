@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour
         StartCoroutine(UpdatePath());
     }
 
+    // when we find the path
     public void OnPathFound(Vector3[] waypoints, bool pathSuccessful)
     {
         if (pathSuccessful)
@@ -31,6 +32,7 @@ public class Unit : MonoBehaviour
         }
     }
 
+    // when we found a better different path
     IEnumerator UpdatePath()
     {
 
@@ -54,6 +56,7 @@ public class Unit : MonoBehaviour
         }
     }
 
+    // follows the waypoints of the path
     IEnumerator FollowPath()
     {
 
@@ -101,6 +104,7 @@ public class Unit : MonoBehaviour
         }
     }
 
+    // gizmos
     public void OnDrawGizmos()
     {
         if (path != null)

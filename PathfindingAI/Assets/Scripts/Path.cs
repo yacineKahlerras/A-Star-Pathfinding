@@ -10,6 +10,7 @@ public class Path
     public readonly int finishLineIndex;
     public readonly int slowDownIndex;
 
+    // path contructor
     public Path(Vector3[] waypoints, Vector3 startPos, float turnDst, float stoppingDst)
     {
         lookPoints = waypoints;
@@ -38,11 +39,13 @@ public class Path
         }
     }
 
+    // vector3 to vector2
     Vector2 V3ToV2(Vector3 v3)
     {
         return new Vector2(v3.x, v3.z);
     }
 
+    // Gizmos
     public void DrawWithGizmos()
     {
 
@@ -52,11 +55,11 @@ public class Path
             Gizmos.DrawCube(p + Vector3.up, Vector3.one);
         }
 
-        Gizmos.color = Color.white;
+        /*Gizmos.color = Color.white;
         foreach (Line l in turnBoundaries)
         {
             l.DrawWithGizmos(10);
-        }
+        }*/
 
     }
 

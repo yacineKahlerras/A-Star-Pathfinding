@@ -16,12 +16,13 @@ public class Pathfinding : MonoBehaviour
         grid = GetComponent<Grid>();
     }
 
-
+    // find a path
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
         StartCoroutine(FindPath(startPos, targetPos));
     }
 
+    // finds a path
     IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
     {
 
@@ -86,7 +87,7 @@ public class Pathfinding : MonoBehaviour
 
     }
 
-
+    // goes from target to start point
     Vector3[] RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
@@ -103,6 +104,7 @@ public class Pathfinding : MonoBehaviour
 
     }
 
+    // if going in same direction delete waypoints in between
     Vector3[] SimplifyPath(List<Node> path)
     {
         List<Vector3> waypoints = new List<Vector3>();
@@ -120,6 +122,7 @@ public class Pathfinding : MonoBehaviour
         return waypoints.ToArray();
     }
 
+    // gets distance between 2 nodes
     int GetDistance(Node nodeA, Node nodeB)
     {
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);

@@ -2,17 +2,20 @@ using UnityEngine;
 using System.Collections;
 using System;
 
+// class for structuring closer waypoints faster
 public class Heap<T> where T : IHeapItem<T>
 {
+    
+    T[] items; // waypoints
+    int currentItemCount; // waypoints number
 
-    T[] items;
-    int currentItemCount;
-
+    // constructure
     public Heap(int maxHeapSize)
     {
         items = new T[maxHeapSize];
     }
 
+    // adds item to bottom of the list then sorts them up
     public void Add(T item)
     {
         item.HeapIndex = currentItemCount;
@@ -21,6 +24,7 @@ public class Heap<T> where T : IHeapItem<T>
         currentItemCount++;
     }
 
+    // removes first item then puts the biggest one first then sorts them down
     public T RemoveFirst()
     {
         T firstItem = items[0];
@@ -31,11 +35,13 @@ public class Heap<T> where T : IHeapItem<T>
         return firstItem;
     }
 
+    // if an item is changed they get sorted
     public void UpdateItem(T item)
     {
         SortUp(item);
     }
 
+    // returns path waypoints count
     public int Count
     {
         get
@@ -44,11 +50,13 @@ public class Heap<T> where T : IHeapItem<T>
         }
     }
 
+    // if an item is on the list
     public bool Contains(T item)
     {
         return Equals(items[item.HeapIndex], item);
     }
 
+    // sorts an item from the bottom up
     void SortDown(T item)
     {
         while (true)
@@ -87,6 +95,7 @@ public class Heap<T> where T : IHeapItem<T>
         }
     }
 
+    // sorts an item from the top down
     void SortUp(T item)
     {
         int parentIndex = (item.HeapIndex - 1) / 2;
@@ -107,6 +116,7 @@ public class Heap<T> where T : IHeapItem<T>
         }
     }
 
+    // swaps positions of the two items
     void Swap(T itemA, T itemB)
     {
         items[itemA.HeapIndex] = itemB;
@@ -120,6 +130,7 @@ public class Heap<T> where T : IHeapItem<T>
 
 }
 
+// an items interface
 public interface IHeapItem<T> : IComparable<T>
 {
     int HeapIndex

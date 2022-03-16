@@ -8,13 +8,14 @@ public class Node : IHeapItem<Node>
     public Vector3 worldPosition;
     public int gridX;
     public int gridY;
-    public int movementPenalty;
+    public int movementPenalty; // to move away from unwanted paths
 
-    public int gCost;
-    public int hCost;
-    public Node parent;
+    public int gCost; // distance between start and this node
+    public int hCost; // distance between end and this node
+    public Node parent; // used to retrace steps when finding path is over
     int heapIndex;
 
+    // node contructor
     public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY, int _penalty)
     {
         walkable = _walkable;
@@ -24,6 +25,7 @@ public class Node : IHeapItem<Node>
         movementPenalty = _penalty;
     }
 
+    // distance between start and finish using this current node
     public int fCost
     {
         get
@@ -32,6 +34,7 @@ public class Node : IHeapItem<Node>
         }
     }
 
+    // where is it in the heap
     public int HeapIndex
     {
         get
@@ -44,6 +47,7 @@ public class Node : IHeapItem<Node>
         }
     }
 
+    // compares f costs of 2 nodes
     public int CompareTo(Node nodeToCompare)
     {
         int compare = fCost.CompareTo(nodeToCompare.fCost);

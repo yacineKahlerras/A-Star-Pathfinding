@@ -6,12 +6,10 @@ using System;
 public class PathRequestManager : MonoBehaviour
 {
 
-    Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
+    Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>(); // request list
     PathRequest currentPathRequest;
-
     static PathRequestManager instance;
     Pathfinding pathfinding;
-
     bool isProcessingPath;
 
     void Awake()
@@ -20,6 +18,7 @@ public class PathRequestManager : MonoBehaviour
         pathfinding = GetComponent<Pathfinding>();
     }
 
+    // requests a path
     public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], bool> callback)
     {
         PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
@@ -27,6 +26,7 @@ public class PathRequestManager : MonoBehaviour
         instance.TryProcessNext();
     }
 
+    // process the next path request on the queue
     void TryProcessNext()
     {
         if (!isProcessingPath && pathRequestQueue.Count > 0)
@@ -37,6 +37,7 @@ public class PathRequestManager : MonoBehaviour
         }
     }
 
+    // when finished path send the action and process next one
     public void FinishedProcessingPath(Vector3[] path, bool success)
     {
         currentPathRequest.callback(path, success);
@@ -44,6 +45,7 @@ public class PathRequestManager : MonoBehaviour
         TryProcessNext();
     }
 
+    // contains a start and end and an action when path is found
     struct PathRequest
     {
         public Vector3 pathStart;
