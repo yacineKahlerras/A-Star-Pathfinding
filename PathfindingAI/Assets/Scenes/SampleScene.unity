@@ -2228,7 +2228,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     terrainPenalty: 0
-  obstacleProximityPenalty: 100
+  obstacleProximityPenalty: 2147483647
 --- !u!114 &1025628329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,10 +2616,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1193026487}
-  speed: 35
+  speed: 0
   turnSpeed: 100
   turnDst: 0
   stoppingDst: 0
+  pathPointsColor: {r: 0.84705883, g: 0.12941177, b: 0.28235295, a: 1}
+  pathLinesColor: {r: 0.33962262, g: 0.059273757, b: 0.11902023, a: 1}
+  gizmosSphereSize: 0.3
 --- !u!1 &1303186375
 GameObject:
   m_ObjectHideFlags: 0

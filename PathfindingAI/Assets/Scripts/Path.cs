@@ -46,13 +46,26 @@ public class Path
     }
 
     // Gizmos
-    public void DrawWithGizmos()
+    public void DrawWithGizmos(Color pathPointsColor, Color pathLinesColor, float gizmosSphereSize)
     {
 
-        Gizmos.color = Color.black;
-        foreach (Vector3 p in lookPoints)
+        //Gizmos.color = Color.black;
+
+        /*foreach (Vector3 p in lookPoints)
         {
-            Gizmos.DrawCube(p + Vector3.up, Vector3.one);
+            Gizmos.DrawSphere(p + Vector3.up, .5f);
+        }*/
+
+        for (int i = 0; i < lookPoints.Length; i++)
+        {
+            if (i > 0)
+            {
+                Gizmos.color = pathLinesColor;
+                Gizmos.DrawLine(lookPoints[i - 1], lookPoints[i]);
+            }
+
+            Gizmos.color = pathPointsColor;
+            Gizmos.DrawSphere(lookPoints[i] + Vector3.up, gizmosSphereSize);
         }
 
         /*Gizmos.color = Color.white;

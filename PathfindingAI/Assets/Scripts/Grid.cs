@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Pathfinding))]
+[RequireComponent(typeof(PathRequestManager))]
 public class Grid : MonoBehaviour
 {
 

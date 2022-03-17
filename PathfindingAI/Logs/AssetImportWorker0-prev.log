@@ -15,11 +15,11 @@ E:/STUFF/programmation/Apps/21-A Pathfinding/A-Star-Pathfinding/PathfindingAI
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-62059
+64216
 Successfully changed project path to: E:/STUFF/programmation/Apps/21-A Pathfinding/A-Star-Pathfinding/PathfindingAI
 E:/STUFF/programmation/Apps/21-A Pathfinding/A-Star-Pathfinding/PathfindingAI
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 162.72 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 247.09 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.2f1 (068178b99f32)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Resources/UnitySubsystems
@@ -31,10 +31,3 @@ Direct3D:
     Vendor:   
     VRAM:     128 MB
     Driver:   10.18.10.5069
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56900
-Begin MonoManager ReloadAssembly

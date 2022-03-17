@@ -15,6 +15,9 @@ public class Unit : MonoBehaviour
 
     Path path;
 
+    public Color pathPointsColor, pathLinesColor;
+    public float gizmosSphereSize = .5f;
+
     void Start()
     {
         StartCoroutine(UpdatePath());
@@ -109,7 +112,7 @@ public class Unit : MonoBehaviour
     {
         if (path != null)
         {
-            path.DrawWithGizmos();
+            path.DrawWithGizmos(pathPointsColor, pathLinesColor, gizmosSphereSize);
         }
     }
 }
