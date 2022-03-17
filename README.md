@@ -1,7 +1,7 @@
 ![Design and Development](https://github.com/yacineKahlerras/A-Star-Pathfinding/blob/main/PathExample.jpg)
 
 # About
-this is a Unity Spline Tool that lets you create a Spline and Extrude a Flat 2D shape along side the Created Spline to created a 3D Object
+this is an A* pathfinder that can use area preferences (like sticking to a road and avoinding mud areas for example) by having movement penalties associated with certain areas that you can put into a layer
 
 # Video Showcase
 this is a video showcasing the different stuff that you can do with it
