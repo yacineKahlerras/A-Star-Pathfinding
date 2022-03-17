@@ -2228,7 +2228,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     terrainPenalty: 0
-  obstacleProximityPenalty: 2147483647
+  obstacleProximityPenalty: 9999
 --- !u!114 &1025628329
 MonoBehaviour:
   m_ObjectHideFlags: 0
