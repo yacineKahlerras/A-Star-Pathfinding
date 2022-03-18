@@ -8,7 +8,7 @@ this is a video showcasing the different stuff that you can do with it
 
 
 <a href="https://www.youtube.com/watch?feature=player_embedded&v=wNiQDz2-Mu8
-" target="_blank" rel="noopener noreferrer"><img src="https://github.com/yacineKahlerras/A-Star-Pathfinding/blob/main/PathExample.jpg" 
+" target="_blank"><img src="https://github.com/yacineKahlerras/A-Star-Pathfinding/blob/main/PathExample.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="150" border="180" /></a>
 
 # Tutorial
