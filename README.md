@@ -7,7 +7,7 @@ this is an A* pathfinder that can use area preferences (like sticking to a road 
 this is a video showcasing the different stuff that you can do with it
 
 
-<a href="https://www.youtube.com/watch?feature=player_embedded&v=wNiQDz2-Mu8
+<a href="https://youtu.be/SKG7QxKBNLM
 " target="_blank"><img src="https://github.com/yacineKahlerras/A-Star-Pathfinding/blob/main/PathExampleVideoButton.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="150" border="180" /></a>
 
